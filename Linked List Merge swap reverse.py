@@ -25,7 +25,8 @@ class Linkedlist:
           nxt = cur_node.next
           cur_node.next = prev
           prev = cur_node 
-          cur_node = nxt  
+          cur_node = nxt
+            
         self.head = prev
     
     def mergelist(self, list2):
