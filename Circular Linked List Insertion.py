@@ -25,17 +25,17 @@ class LinkedList:
     def prepend(self,data):
         new_node = Node(data)
         cur_node = self.head
+        new_node.next = self.head 
         
-        if cur_node.next == self.head:
-            new_node.next = self.head
-            cur_node.next = new_node 
+        if not self.head:
+            new_node.next = new_node 
             self.head = new_node
 
         else:
             while cur_node.next != self.head:
                 cur_node = cur_node.next
+            
             cur_node.next = new_node
-            new_node.next = self.head
             self.head = new_node
         
     def print_list(self):
