@@ -18,10 +18,50 @@ class Linkedlist:
         cur_node.next = new_node
 
     def reverse(self):
-        pass
+        cur_node = self.head
+        prev = None
+
+        while cur_node:
+          nxt = cur_node.next
+          cur_node.next = prev
+          prev = cur_node 
+          cur_node = nxt  
+        self.head = prev
     
     def mergelist(self, list2):
-        pass
+        p = self.head
+        q = list2.head
+        s = None
+
+        if not p:
+            return q
+        if not q:
+            return p
+        
+        if p.data <= q.data:
+            s = p
+            p = s.next
+        else:
+            s = q
+            q = s.next
+        new_head= s
+
+        while p and q:
+            if p.data <= q.data:
+                s.next = p
+                s = p
+                p = s.next
+            else:
+                s.next = q
+                s = q
+                q = s.next
+        
+        if p is None:
+            s.next = q
+        if q is None:
+            s.next = p
+        
+        self.head = new_head
 
     def node_swap(self, val1, val2):
         cur_node1 = self.head
@@ -60,12 +100,20 @@ class Linkedlist:
             cur_node = cur_node.next        
 
 llist1 = Linkedlist()
-
+llist2 = Linkedlist()
 llist1.append(1)
 llist1.append(3)
 llist1.append(5)
 llist1.append(7)
 llist1.append(9)
 
-llist1.node_swap(3,9)
+llist2.append(2)
+llist2.append(4)
+llist2.append(6)
+llist2.append(8)
+llist2.append(10)
+
+#llist1.node_swap(3,9)
+llist1.mergelist(llist2)
+llist1.reverse()
 llist1.print_list()
