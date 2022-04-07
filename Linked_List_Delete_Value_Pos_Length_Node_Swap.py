@@ -32,6 +32,23 @@ class Linkedlist:
         prev.next = cur_node.next
         cur_node = None
     
+    def delete_by_pos(self,pos):
+        cur_node = self.head
+        prev = None
+        count = 0
+        while cur_node and count != pos:
+            prev = cur_node
+            count += 1
+            cur_node = cur_node.next        
+        
+        if prev == None:
+            self.head = cur_node.next
+            cur_node = None
+            return
+        
+        prev.next = cur_node.next
+        cur_node = None
+    
     def length(self):
         cur_node = self.head
         count = 0
@@ -56,7 +73,7 @@ llist1.append(9)
 length_before = llist1.length()
 print("The length before deletion is", length_before)
 
-llist1.delete_by_value(1)
+llist1.delete_by_value(5)
 
 length_after = llist1.length()
 print("The length after deletion of a node is", length_after)
